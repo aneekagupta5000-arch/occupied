@@ -5,7 +5,7 @@ a = Analysis(
     ['myapp.py'],
     pathex=[],
     binaries=[],
-    datas=[('life_audit_icon.ico', '.')],
+    datas=[],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},
@@ -22,7 +22,7 @@ exe = EXE(
     a.binaries,
     a.datas,
     [],
-    name='myapp',
+    name='MyApp',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
@@ -35,5 +35,4 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon=['life_audit_icon.ico'],
 )

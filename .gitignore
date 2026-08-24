@@ -1,0 +1,27 @@
+# Virtual environment
+.venv/
+env/
+venv/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.class
+
+# PyInstaller / Build artifacts
+build/
+dist/
+*.spec
+
+# SQLite databases & test data
+*.db
+*.sqlite3
+
+# Packaging archives
+*.zip
+
+# OS / Editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
