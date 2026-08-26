@@ -8,6 +8,7 @@ import calendar
 import os
 from pathlib import Path
 import time
+from PIL import Image, ImageTk
 
 # Import Supabase Client & Config Helpers
 import supabase_client
@@ -18,8 +19,8 @@ from supabase_client import get_supabase, is_configured
 # Cloud Multi-User Frosted Tkinter + Supabase Desktop Application
 # ============================================================
 
-ICON_PNG = str(Path(__file__).with_name("icon.ico.png"))
-ICON_ICO = str(Path(__file__).with_name("life_audit_icon.ico"))
+ICON_IMAGE = str(Path(__file__).with_name("icon.ico"))
+ICON_ICO = ICON_IMAGE
 ICE_GIF = str(Path(__file__).with_name("ice_melting.gif"))
 PLANE_GIF = str(Path(__file__).with_name("flying_airplane.gif"))
 SESSION_FILE = Path(os.getenv("APPDATA", Path.home())) / "Occupied" / "remembered_session.json"
@@ -136,11 +137,15 @@ class LifeAuditApp:
 
     def load_icon_image(self):
         """Load app icon image for UI rendering."""
-        if Path(ICON_PNG).exists():
+        if Path(ICON_IMAGE).exists():
             try:
-                raw_img = tk.PhotoImage(file=ICON_PNG)
-                self.icon_image_large = raw_img.subsample(8, 8)
-                self.icon_image_small = raw_img.subsample(16, 16)
+                with Image.open(ICON_IMAGE) as image:
+                    self.icon_image_large = ImageTk.PhotoImage(
+                        image.copy().resize((64, 64), Image.Resampling.LANCZOS)
+                    )
+                    self.icon_image_small = ImageTk.PhotoImage(
+                        image.copy().resize((32, 32), Image.Resampling.LANCZOS)
+                    )
             except Exception:
                 self.icon_image_large = None
                 self.icon_image_small = None

@@ -2,7 +2,7 @@ from pathlib import Path
 from PIL import Image
 
 source = Path("icon.ico.png")
-destination = Path("life_audit_icon.ico")
+destination = Path("mainsymbol.ico")
 
 with Image.open(source) as image:
     image.convert("RGBA").save(
